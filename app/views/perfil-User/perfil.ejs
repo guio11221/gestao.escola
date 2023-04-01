@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
+  data-template="vertical-menu-template-free">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <title>Page - Perfil</title>
+
+  <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+  <%- include('../menu/menu.ejs') %>
+
+    <% if (message !=null) { %>
+      <script>
+        Swal.fire({
+          icon: 'info',
+          title: 'Resultado da solicitação',
+          text: '<%= message %>',
+          confirmButtonText: 'OK'
+        });
+      </script>
+      <% } %>
+
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <h5 class="fw-bold py-3 mb-4"> Perfil</h5>
+
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="nav nav-pills flex-column flex-md-row mb-3">
+
+                  <li class="nav-item">
+                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
+                      data-bs-target="#profile-overview" aria-controls="profile-overview" aria-selected="true">
+                      <i class="bx bx-user me-1"></i> Account
+                    </button>
+                  </li>
+
+                  <li class="nav-item">
+
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                      data-bs-target="#profile-change-password" aria-controls="profile-change-password"
+                      aria-selected="false">
+                      Mudar Senha
+                    </button>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+
+                    <div class="card mb-4">
+                      <h5 class="card-header">Perfil </h5>
+                      <!-- Account -->
+                      <div class="card-body">
+                        <div class="d-flex align-items-start align-items-sm-center gap-4">
+                       
+                            <img src="../assets/img/avatars/userRoot.jpg" alt="user-avatar" class="d-block rounded"
+                              height="100" width="100" id="uploadedAvatar" />
+
+
+                        </div>
+                      </div>
+                      <hr class="my-0" />
+                      <div class="card-body">
+
+                        <div class="row">
+                          <div class="mb-3 col-md-6">
+                            <label for="firstName" class="form-label">Nome:</label>
+                            <input class="form-control" type="text" id="firstName" name="firstName"
+                              value="<%= dados.aluno_nome %>" autofocus disabled />
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label">Cpf</label>
+                            <input class="form-control" type="text" name="lastName" id="lastName"
+                              value="<%= dados.cpf %>" disabled />
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input class="form-control" type="text" id="email" name="email"
+                              value="<%= dados.pessoa_email %>" disabled />
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="organization" class="form-label">Empresa</label>
+                            <input type="text" class="form-control" id="organization" name="organization"
+                              value="<%= dados.empresa_nome %>" disabled />
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label class="form-label" for="phoneNumber">Celular</label>
+                            <div class="input-group input-group-merge">
+
+                              <input type="text" id="phoneNumber" name="phoneNumber" value="<%= dados.celular %>"
+                                class="form-control" disabled />
+                            </div>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="address" class="form-label">Endereço</label>
+                            <input type="text" class="form-control" id="address" name="address"
+                              value="<%= dados.endereco %>" disabled />
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="state" class="form-label">Cidade</label>
+                            <input class="form-control" type="text" id="state" name="state"
+                              value="<%= dados.cidade %>" disabled />
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="zipCode" class="form-label">Cep</label>
+                            <input type="text" class="form-control" id="zipCode" name="zipCode"
+                              value="<%= dados.cep %>" maxlength="11" disabled />
+                          </div>
+
+                        </div>
+
+                      </div>
+                      <!-- /Account -->
+                    </div>
+                  </div>
+
+
+                  <div class="tab-pane fade pt-3  tab-pane fade " id="profile-change-password">
+
+                    <form action="/updateSenha/users" class="needs-validation" id="form-id" method="post" novalidate>
+
+                      <div class="row mb-3">
+                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Senha Atual</label>
+                        <div class="col-md-8 col-lg-9">
+
+                          <input type="password" id="senhaAtual" class="form-control" name="senhaAtual" maxlength="20"
+                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                            aria-describedby="password" required />
+                          <div class="invalid-feedback">
+                            Preencha esse campo corretamente
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Nova Senha</label>
+                        <div class="col-md-8 col-lg-9">
+                          <input type="password" id="senhaNova" class="form-control" name="senha" maxlength="20"
+                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                            aria-describedby="password" required />
+                          <div class="invalid-feedback">
+                            Preencha esse campo corretamente
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Confirmar Nova Senha</label>
+                        <div class="col-md-8 col-lg-9">
+                          <input type="password" id="confirSenha" class="form-control" name="confirmSenha"
+                            maxlength="20"
+                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                            aria-describedby="password" required />
+                          <div class="invalid-feedback">
+                            Preencha esse campo corretamente
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="text-center">
+
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                      </div>
+                    </form><!-- End Change Password Form -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- / Content -->
+
+        </div>
+
+
+
+
+
+        <%- include('../menu/footer.ejs') %>
+
+          <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+          </div>
+          <!-- / Layout page -->
+          </div>
+
+          <!-- Overlay -->
+          <div class="layout-overlay layout-menu-toggle"></div>
+          </div>
+
+
+
+
+          <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+          <script src="../assets/vendor/libs/popper/popper.js"></script>
+          <script src="../assets/vendor/js/bootstrap.js"></script>
+          <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+          <script>
+            (function () {
+              'use strict';
+              window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                  form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                  }, false);
+                });
+
+
+              }, false);
+            })();
+
+          </script>
+          <script src="../assets/vendor/js/menu.js"></script>
+          <!-- endbuild -->
+
+          <!-- Vendors JS -->
+          <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+          <!-- Main JS -->
+          <script src="../assets/js/main.js"></script>
+
+          <!-- Page JS -->
+          <script src="../assets/js/dashboards-analytics.js"></script>
+
+          <!-- Place this tag in your head or just before your close body tag. -->
+          <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>
