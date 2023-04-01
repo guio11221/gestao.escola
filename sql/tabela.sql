@@ -1,6 +1,15 @@
 create database gestao_escolar
 use gestao_escolar
 
+CREATE TABLE usuarios (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(100),
+  email VARCHAR(100),
+  senha VARCHAR(255),
+  data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
 CREATE TABLE alunos (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(100),
@@ -87,16 +96,6 @@ CREATE TABLE turmas (
   FOREIGN KEY (id_usuario) REFERENCES usuario(id),
   FOREIGN KEY (curso_id) REFERENCES cursos(id),
   FOREIGN KEY (professor_id) REFERENCES professores(id)
-);
-
-
-CREATE TABLE usuarios (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  nome VARCHAR(100),
-  email VARCHAR(100),
-  senha VARCHAR(255),
-  data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
